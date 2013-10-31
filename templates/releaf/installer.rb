@@ -11,23 +11,23 @@ def ask_wizard(question, default_value)
 end
 
 # collect dummy database config
-if ENV['RELEAF_DUMMY_DB_USERNAME'].nil?
+if ENV['RELEAF_DUMMY_RAILS3_DB_USERNAME'].nil?
   db_username = ask_wizard("Database username? (leave blank to use the 'root')", 'root')
 else
-  db_username = ENV['RELEAF_DUMMY_DB_USERNAME']
+  db_username = ENV['RELEAF_DUMMY_RAILS3_DB_USERNAME']
 end
 
-if ENV['RELEAF_DUMMY_DB_PASSWORD'].nil?
+if ENV['RELEAF_DUMMY_RAILS3_DB_PASSWORD'].nil?
   db_password = ask_wizard("Database password for '#{db_username}?'", '')
 else
-  db_password = ENV['RELEAF_DUMMY_DB_PASSWORD']
+  db_password = ENV['RELEAF_DUMMY_RAILS3_DB_PASSWORD']
 end
 
-if ENV['RELEAF_DUMMY_DB_NAME'].nil?
+if ENV['RELEAF_DUMMY_RAILS3_DB_NAME'].nil?
   @current_recipe = "database"
   db_name = ask_wizard("MySQL database name (leave blank to use 'releaf_dummy')?", 'releaf_dummy')
 else
-  db_name = ENV['RELEAF_DUMMY_DB_NAME']
+  db_name = ENV['RELEAF_DUMMY_RAILS3_DB_NAME']
 end
 
 gsub_file "config/database.yml", /username: .*/, "username: #{db_username}"
