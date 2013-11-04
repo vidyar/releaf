@@ -12,13 +12,19 @@ module Releaf
 
     helper_method \
       :controller_scope_name,
-      :ajax?
+      :ajax?,
+      :current_params
 
     # return contoller translation scope name for using
     # with I18.translation call within hash params
     # ex. t("save", scope: controller_scope_name)
     def controller_scope_name
       'admin.' + self.class.name.sub(/Controller$/, '').underscore.gsub('/', '_')
+    end
+
+    # returns all params except :controller, :action and :format
+    def current_params
+      params.except(:controller, :action, :format)
     end
 
     # set locale for interface translating from current admin user
