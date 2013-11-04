@@ -16,7 +16,7 @@
 !!! 5
 %html
   %head
-    %title= t(params[:controller], scope: "admin.menu_items") + " - " + Rails.application.class.parent_name
+    %title= page_title
     %meta{content: "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
     = stylesheet_link_tag "releaf/application"
     - %w[css.scss.erb scss.erb css.scss scss css.erb css].each do |ext|
@@ -52,7 +52,7 @@
               %li{class: [("active" if menu_item[:active]), ("collapsed" if menu_item[:collapsed]) ], "data-name" => menu_item[:name]}
                 - if menu_item[:items]
                   %span.trigger
-                    %i.fa.fa-lg{class: "fa-" + menu_item[:icon]}
+                    %i.fa{class: "fa-" + menu_item[:icon]}
                     %span.name= t(menu_item[:name], scope: "admin.menu_items")
                     %span.collapser
                       %button{type: "button"}
@@ -62,10 +62,10 @@
                       %li
                         %a.trigger{href: section_item[:url], class: section_item[:active] ? :active_item : nil}
                           %span.name= t(section_item[:name], scope: "admin.menu_items")
-                          %i.fa.fa-caret-left.active
+                          %i.fa.fa-caret-left
                 - else
                   %a.trigger{href: menu_item[:url]}
-                    %i.fa.fa-lg{class: "fa-" + menu_item[:icon]}
+                    %i.fa{class: "fa-" + menu_item[:icon]}
                     %span.name= t(menu_item[:name], scope: "admin.menu_items")
         .clear
         %footer
