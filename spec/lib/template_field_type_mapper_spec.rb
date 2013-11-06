@@ -7,12 +7,29 @@ describe Releaf::TemplateFieldTypeMapper do
   end
 
   describe ".use_i18n?" do
-    it "needs tests"
+    context "when object translates" do
+      context "when given attribute  translatable" do
+        it "returns true" do
+          expect(Releaf::TemplateFieldTypeMapper.use_i18n?(Book.new, :description)).to be_true
+        end
+      end
+
+      context "when attribute does not translatable" do
+        it "returns false" do
+          expect(Releaf::TemplateFieldTypeMapper.use_i18n?(Book.new, :title)).to be_false
+        end
+      end
+    end
+
+    context "when object does not translates" do
+      it "returns false" do
+        expect(Releaf::TemplateFieldTypeMapper.use_i18n?(Releaf::Admin.new, :password)).to be_false
+      end
+    end
   end
 
 
   describe ".field_type_name_for_string" do
-
     %w[thumbnail_uid image_uid photo_uid photography_uid picture_uid avatar_uid logo_uid banner_uid icon_uid].each do |field_name|
       context "when attribute name is '#{field_name}'" do
         it "returns 'image'" do
@@ -76,7 +93,6 @@ describe Releaf::TemplateFieldTypeMapper do
         expect( subject.send(:field_type_name_for_string, 'email_for_admin', nil) ).to_not eq 'email'
       end
     end
-
 
     %w[link awesome_link].each do |field_name|
       context "when attribute name is '#{field_name}'" do
@@ -164,7 +180,6 @@ describe Releaf::TemplateFieldTypeMapper do
         end
       end
     end
-
   end # describe '.field_type_name_for_text'
 
   describe ".field_type_name_for_datetime" do
@@ -176,7 +191,6 @@ describe Releaf::TemplateFieldTypeMapper do
       end
     end
   end # describe ".field_type_name_for_datetime" do
-
   describe ".field_type_name_for_date" do
     %w[no matter what].each do |field_name|
       context "when attribute name is '#{field_name}'" do
@@ -186,7 +200,6 @@ describe Releaf::TemplateFieldTypeMapper do
       end
     end
   end # describe ".field_type_name_for_date" do
-
   describe ".field_type_name_for_time" do
     %w[no matter what].each do |field_name|
       context "when attribute name is '#{field_name}'" do
@@ -196,7 +209,6 @@ describe Releaf::TemplateFieldTypeMapper do
       end
     end
   end # describe ".field_type_name_for_time" do
-
   describe ".field_type_name_for_boolean" do
     %w[no matter what].each do |field_name|
       context "when attribute name is '#{field_name}'" do
@@ -206,10 +218,7 @@ describe Releaf::TemplateFieldTypeMapper do
       end
     end
   end # describe ".field_type_name_for_boolean" do
-
-
   describe ".field_type_name_for_virtual" do
-
     %w[thumbnail_uid image_uid photo_uid photography_uid picture_uid avatar_uid logo_uid banner_uid icon_uid].each do |field_name|
       context "when attribute name is '#{field_name}'" do
         it "returns 'image'" do
@@ -375,7 +384,6 @@ describe Releaf::TemplateFieldTypeMapper do
         expect( subject.send(:field_type_name_for_virtual, 'time', nil) ).to_not eq 'datetime'
       end
     end
-
   end # describe ".field_type_name_for_virtual"
 
 
@@ -405,5 +413,4 @@ describe Releaf::TemplateFieldTypeMapper do
       end
     end
   end # describe ".field_type_name_for_integer"
-
 end
