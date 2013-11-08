@@ -30,6 +30,12 @@ class Book < ActiveRecord::Base
     :retained_cover_image,
     :remove_cover_image
 
+  globalize_locales.each do |locale|
+    translates.each do |field|
+      attr_accessible :"#{field}_#{locale}"
+    end
+  end
+
   alias_attribute :to_text, :title
 
   def price
