@@ -440,7 +440,8 @@ jQuery(function(){
         });
 
 
-
+        // validation initalized finished, add data attribute for it (used by automatized test, etc)
+        form.attr("data-validation-initialized", true);
 
     });
 
