@@ -24,4 +24,19 @@ module Helpers
     click_button 'Save'
     expect(page).to have_css('body > .notifications .notification[data-id="resource_status"][data-type="success"]', text: status_text)
   end
+
+  def open_toolbox_dialog item_name, resource = nil
+    open_toolbox(item_name, resource)
+    expect(page).to have_css('.dialog form[data-validation="true"][data-validation-initialized="true"]')
+  end
+
+  def open_toolbox item_name, resource = nil
+    if resource
+      find('.view-index .table tr[data-id="' + resource.id.to_s  + '"] .toolbox button.trigger').click
+    else
+      find('.main h2.header .toolbox-wrap .toolbox button.trigger').click
+    end
+
+    click_link item_name
+  end
 end
