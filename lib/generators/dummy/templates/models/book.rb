@@ -7,7 +7,6 @@ class Book < ActiveRecord::Base
   validates_presence_of :title
 
   translates :description
-  globalize_accessors
 
   # chapters may not be destroy
   accepts_nested_attributes_for :chapters
@@ -26,17 +25,13 @@ class Book < ActiveRecord::Base
     :summary_html,
     :title,
     :year,
+    :description,
     :cover_image,
     :retained_cover_image,
     :remove_cover_image
 
-  globalize_locales.each do |locale|
-    translates.each do |field|
-      attr_accessible :"#{field}_#{locale}"
-    end
-  end
-
   alias_attribute :to_text, :title
+  globalize_accessors
 
   def price
     stored_price = super
