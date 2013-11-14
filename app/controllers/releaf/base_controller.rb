@@ -560,8 +560,6 @@ module Releaf
         flash[:success] = { id: :resource_status, message: I18n.t(success_key, scope: notice_scope_name) }
 
         yield if block_given?
-
-        success_url = url_for( action: 'edit', id: @resource.id )
       end
 
       respond_to do |format|
@@ -664,6 +662,13 @@ module Releaf
 
     def filter_templates
       filter_templates_from_hash(params)
+    end
+
+    # Returns url to redirect after successul resource create/update actions
+    #
+    # @return [String] url
+    def success_url
+      url_for( action: 'edit', id: @resource.id )
     end
 
     def build_breadcrumbs
