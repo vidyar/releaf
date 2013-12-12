@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails', '= 2.3.0'
   s.add_dependency 'railties', '>= 3.1'
   s.add_dependency 'haml-rails', '>= 0.3.4'
-  s.add_dependency 'dragonfly', '>= 0.9.12'
+  s.add_dependency 'dragonfly', '= 0.9.15'
   s.add_dependency 'devise', '>= 2.1.0'
   s.add_dependency 'rails-settings-cached', '>= 0.2.4'
   s.add_dependency 'tinymce-rails', '~> 3.5.8'
