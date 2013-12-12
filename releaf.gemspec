@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib,templates}/**/*"] + ["LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency 'rails', '= 3.2.13'
+  s.add_dependency 'rails', '= 3.2.16'
   s.add_dependency 'sass-rails', '>= 3.2.5'
   s.add_dependency 'jquery-rails', '= 2.3.0'
   s.add_dependency 'railties', '>= 3.1'
