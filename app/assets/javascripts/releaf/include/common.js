@@ -186,6 +186,10 @@ jQuery(function(){
 
         form.on( 'validationstart', function( event, v, event_params )
         {
+            if (event.isDefaultPrevented())
+            {
+                return;
+            }
             form.attr( 'data-validation-id', event_params.validation_id );
 
 			if (v.clicked_button)
