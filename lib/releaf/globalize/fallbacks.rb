@@ -1,5 +1,5 @@
 module Releaf
-  module Globalize3
+  module Globalize
     module Fallbacks
       def self.set
         i18n_fallbacks = {}
@@ -17,7 +17,6 @@ module Releaf
           i18n_fallbacks[locale] = [locale] + (valid_locales - [locale])
         end
 
-        Globalize.fallbacks = i18n_fallbacks
       end
     end
   end
